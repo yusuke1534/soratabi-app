@@ -1,148 +1,339 @@
 <!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#ffffff" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="そらたび" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-  <meta name="description" content="泊まれる宿から、旅を広げる。宿の近くの観光・体験を探せる旅行案内アプリ「そらたび」。" />
-  <link rel="icon" type="image/png" href="assets/logo.png" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <title>そらたび | 泊まれる宿から、旅を広げる。</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>そらたび</title>
+  <meta name="theme-color" content="#ffffff">
   <style>
-    :root{--navy:#091a3c;--muted:#697b93;--blue:#117fea;--blue2:#0066d8;--sky:#e9f6ff;--mint:#e4f8ef;--border:#eaf0f6;--shadow:0 5px 20px rgba(12,48,88,.09);--top-safe:env(safe-area-inset-top,0px);--bottom-safe:env(safe-area-inset-bottom,0px)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f6f9fd;color:var(--navy);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans CJK JP",sans-serif;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #74b8ff;outline-offset:2px}.hidden{display:none!important}
-    .app{max-width:1110px;margin:auto;min-height:100vh;background:#fff;box-shadow:0 0 55px rgba(30,67,108,.09);overflow:hidden}.header{height:94px;padding:12px 21px;display:flex;align-items:center;justify-content:space-between;background:#fff;position:sticky;top:0;z-index:50;border-bottom:1px solid #f0f4fb}.brand{display:flex;align-items:center;gap:11px;min-width:0}.brand-logo{width:62px;height:62px;object-fit:cover;border-radius:50%;box-shadow:0 1px 3px #00000012;flex-shrink:0}.brand-word{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif;font-weight:700;font-size:36px;letter-spacing:1px;white-space:nowrap;line-height:1.13}.brand-roman{text-align:center;font-size:12px;letter-spacing:5px;font-weight:700;padding-left:6px;margin-top:2px}.header-right{display:flex;gap:13px;align-items:center}.icon-button{border:0;background:transparent;border-radius:14px;width:40px;height:40px;display:grid;place-items:center;color:var(--navy)}.icon-button svg{width:25px;height:25px}.icon-button:hover{background:#f0f8ff}.desktop-nav{display:none;gap:7px}.desktop-nav button{border:0;background:transparent;padding:12px 13px;color:#647890;font-weight:750;border-radius:12px}.desktop-nav button.active,.desktop-nav button:hover{background:#e8f5ff;color:var(--blue)}
-    .hero{height:339px;position:relative;background:linear-gradient(90deg,#beeaff,#147bd5);isolation:isolate}.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;z-index:-2}.hero:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(255,255,255,.22),transparent 75%),linear-gradient(180deg,rgba(255,255,255,.06),transparent 60%,rgba(12,109,183,.08))}.hero-copy{padding:31px 36px;max-width:660px;text-shadow:0 2px 12px #ffffff98}.hero h1{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif CJK JP",serif;font-size:clamp(31px,4.5vw,54px);font-weight:750;line-height:1.35;letter-spacing:-.055em;margin:0 0 12px}.hero p{font-size:17px;line-height:1.55;font-weight:800;margin:0}.hero-search{position:absolute;bottom:18px;left:4%;width:92%;min-height:60px;background:#fff;display:flex;align-items:center;padding:6px 7px 6px 19px;box-shadow:0 5px 25px #004b9042;border-radius:60px}.hero-search svg{width:24px;height:24px;color:#67788c;flex-shrink:0}.hero-search input{border:0;outline:none;padding:0 12px;min-width:0;flex:1;color:var(--navy);font-size:16px;background:transparent}.hero-search input::placeholder{color:#8594a7;opacity:1}.search-submit,.primary{background:linear-gradient(135deg,#228efd,#0872e7);color:#fff;border:1px solid #0880f0;border-radius:32px;font-weight:760;box-shadow:inset 0 2px 1px #ffffff55,0 3px 8px #1c74c538}.search-submit{height:47px;padding:0 26px;font-size:16px}.primary{padding:13px 19px}.primary:hover,.search-submit:hover{filter:brightness(.97)}.primary:active,.search-submit:active,.pill:active,.soft-action:active{transform:translateY(2px)}
-    .chips{display:flex;gap:8px;margin:16px 22px 0;justify-content:center;overflow-x:auto;scrollbar-width:none;padding:2px 1px 7px}.chips::-webkit-scrollbar,.card-grid::-webkit-scrollbar,.spot-grid::-webkit-scrollbar,.features::-webkit-scrollbar{display:none}.pill{display:flex;gap:7px;align-items:center;justify-content:center;border:1px solid #e2ebf3;background:#fff;border-radius:100px;box-shadow:0 3px 8px #00000016;padding:10px 14px;white-space:nowrap;font-weight:800;color:var(--navy);font-size:13px}.pill svg{width:20px;height:20px;color:#1b8de7}.pill:nth-child(6) svg{color:#ea6a96}.pill.active{background:#e6f4ff;border-color:#6db9ef;color:#006bcb}.app-main{padding:0 24px 110px}.intro-notice{margin:2px auto 0;color:#8997a9;font-size:10px;text-align:center;line-height:1.55}.section{margin-top:24px}.section-header{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}.section h2{font-size:27px;line-height:1.3;letter-spacing:-.06em;margin:0;font-weight:850}.section-link{border:0;background:transparent;color:#0c82e8;font-weight:750;font-size:14px;white-space:nowrap;padding:5px 0}.section-desc{font-size:14px;color:#74839b;line-height:1.5;margin:1px 0 13px}
-    .card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.hotel-card,.spot-card{min-width:0;border:1px solid #eef1f7;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 5px 16px rgba(23,69,118,.08);transition:transform .16s,box-shadow .16s}.hotel-card:hover,.spot-card:hover{transform:translateY(-2px);box-shadow:0 9px 22px rgba(23,69,118,.14)}.hotel-photo{width:100%;height:147px;object-fit:cover}.photo-wrap{position:relative;overflow:hidden}.heart{position:absolute;top:9px;right:8px;border:0;background:#00000025;color:#fff;display:grid;place-items:center;width:33px;height:33px;border-radius:50%;backdrop-filter:blur(2px)}.heart svg{width:23px;height:23px;filter:drop-shadow(0 1px 2px #0007)}.heart.saved{color:#fc4e7b;background:#ffffffed}.hotel-body{padding:11px 12px 12px}.hotel-name{font-weight:840;font-size:16px;line-height:1.43;margin:0 0 3px;min-height:23px}.hotel-place,.hotel-rating{font-size:12px;color:var(--muted);margin:3px 0}.hotel-rating{display:flex;align-items:center;gap:5px}.stars{color:#f8aa19;letter-spacing:-2px;font-size:15px}.hotel-price{font-size:21px;font-weight:850;margin:5px 0}.hotel-price small{font-size:10px;font-weight:500;color:var(--muted)}.verified-pill{display:inline-block;color:#087658;background:#e0f7e8;border-radius:40px;padding:4px 9px;font-weight:780;font-size:11px;margin:1px 0 9px}.verified-pill.demo{background:#f0f5fb;color:#60758d}.soft-action{display:flex;justify-content:center;align-items:center;gap:6px;border:none;width:100%;padding:10px 3px;border-radius:40px;background:linear-gradient(180deg,#eff9ff,#e5f4ff);color:#147ddd;font-size:12px;font-weight:850}.soft-action svg{width:16px;height:16px}.clickable{cursor:pointer}.muted-text{color:var(--muted)}
-    .spot-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.spot-card img{width:100%;height:96px;object-fit:cover}.spot-body{padding:9px 8px}.spot-name{font-weight:850;font-size:15px;margin:0 0 5px}.spot-detail{font-size:11px;line-height:1.45;color:#6d7b90;min-height:30px;margin:0 0 7px}.spot-distance{display:flex;align-items:center;gap:3px;color:#74839a;font-size:10px;white-space:nowrap}.spot-distance svg{color:#267ed1;width:13px;height:13px;flex-shrink:0}.features{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.feature{border:0;position:relative;display:flex;min-height:123px;align-items:end;overflow:hidden;border-radius:12px;text-align:left;padding:12px;color:#fff;isolation:isolate;cursor:pointer;background:#2488dd}.feature img{position:absolute;inset:0;object-fit:cover;width:100%;height:100%;z-index:-2}.feature:before{position:absolute;inset:0;content:"";z-index:-1;background:linear-gradient(transparent,#001a347d)}.feature strong{display:block;font-size:17px;line-height:1.4;text-shadow:0 2px 5px #0007}.feature small{display:block;font-size:11px;margin-top:3px;text-shadow:0 2px 5px #0007}.feature-arrow{position:absolute;right:9px;bottom:11px;border-radius:50%;background:#fff;color:#263c50;width:24px;height:24px;display:grid;place-items:center}
-    .app-main-home{padding-left:0;padding-right:0}.app-main-home>.section{margin-left:24px;margin-right:24px} .bottom-nav{z-index:55;position:fixed;bottom:0;left:0;width:100%;background:#fffffffa;border-top:1px solid #e5eaf0;padding:7px 4px calc(7px + var(--bottom-safe));display:flex;justify-content:space-around;box-shadow:0 -3px 13px #244f7a0c}.bottom-nav button{display:flex;flex:1;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#75849a;background:transparent;border:0;font-size:10px;font-weight:750;max-width:135px;padding:0;min-height:49px}.bottom-nav button.active{color:#087dec}.bottom-nav svg{width:24px;height:24px}
-    .page{padding-top:24px}.page-head{display:flex;gap:10px;align-items:center;margin-bottom:18px}.back{border:0;background:#eef6ff;border-radius:50%;width:38px;height:38px;display:grid;place-items:center;color:#187bdf;flex-shrink:0}.page h2{font-size:25px;font-weight:850;letter-spacing:-.04em;margin:0}.page .sub{font-size:13px;color:#78879d;margin:5px 0 0}.searchpanel{display:flex;align-items:center;gap:8px;background:#f1f7fd;padding:10px 12px;border-radius:17px;margin:0 0 16px;border:1px solid #e1eef8}.searchpanel input{border:0;outline:0;flex:1;min-width:0;background:transparent;font-size:15px;color:var(--navy)}.searchpanel button{border:0;background:#1385ee;color:#fff;padding:9px 16px;border-radius:12px;font-weight:780}.sort-bar{display:flex;gap:8px;align-items:center;margin-bottom:13px;justify-content:space-between}.sort-bar strong{font-size:13px;color:var(--muted)}.sort-bar select{border-radius:10px;border:1px solid #e0e8f0;color:#395471;padding:8px 9px;background:#fff}.results-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.results-grid .hotel-photo{height:175px}.results-grid .spot-card img{height:175px}.results-grid .spot-body{padding:12px}.results-grid .spot-name{font-size:18px}.results-grid .spot-detail{min-height:auto;font-size:13px}.results-grid .spot-distance{font-size:12px;margin:12px 0}.results-grid .soft-action{margin-top:10px}.empty{margin:28px auto;padding:30px 20px;background:#f6faff;border:1px solid #e8f0fa;border-radius:18px;text-align:center;color:#647993;line-height:1.6}.empty strong{display:block;color:var(--navy);margin-bottom:5px;font-size:17px}.empty button{margin-top:15px}
-    .detail-cover{border-radius:18px;overflow:hidden;width:100%;height:295px;object-fit:cover;box-shadow:var(--shadow)}.detail-title{font-family:"Noto Sans CJK JP",sans-serif;font-size:25px;margin:20px 0 6px;font-weight:850}.detail-strap{color:var(--muted);font-size:14px}.detail-info{display:flex;flex-wrap:wrap;gap:9px;margin:15px 0}.info-token{border:1px solid #e5eef6;background:#f7fbff;border-radius:40px;padding:8px 11px;font-size:12px;color:#34536d}.detail-price{font-size:25px;font-weight:850;margin:15px 0}.detail-price small{font-size:12px;font-weight:500;color:var(--muted)}.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 0}.secondary{background:#fff;border:1px solid #a7d3f9;color:#117fdf;padding:12px 16px;border-radius:28px;font-weight:780}.detail-hint{font-size:12px;color:#8392a4;line-height:1.7;margin:12px 0}.nearby-list{display:flex;flex-direction:column;gap:10px;margin:12px 0}.nearby-item{display:grid;grid-template-columns:112px 1fr auto;gap:12px;align-items:center;width:100%;border:1px solid #e8f0f8;border-radius:15px;background:#fff;text-align:left;padding:8px;box-shadow:0 3px 13px #1f4d710d}.nearby-item img{height:79px;width:112px;object-fit:cover;border-radius:9px}.nearby-item strong{font-size:15px}.nearby-item p{margin:5px 0;color:#708098;font-size:11px}.nearby-item .distance-label{font-size:12px;color:#167bda;font-weight:700}.nearby-item>svg{color:#1586e9;width:18px;height:18px}.detail-section-title{font-size:21px;margin:27px 0 7px}.linked-hotel{grid-template-columns:112px 1fr auto}.profile-panel{border:1px solid #e3ecf7;border-radius:16px;padding:19px;margin:13px 0;background:linear-gradient(180deg,#fbfdff,#fff);line-height:1.8}.profile-panel h3{font-size:18px;margin:0 0 5px}.profile-panel p{font-size:13px;color:#5d7088;margin:0}.profile-list{display:grid;gap:9px;margin-top:18px}.profile-list button{display:flex;align-items:center;justify-content:space-between;width:100%;border:1px solid #e5edf6;background:#fff;border-radius:14px;padding:16px;text-align:left;color:#314c69;font-size:14px;font-weight:750}.overlay{position:fixed;z-index:100;inset:0;background:#071a38a6;display:flex;justify-content:flex-end;animation:appear .18s}.drawer{width:min(350px,88vw);background:white;height:100%;overflow-y:auto;padding:28px 20px;box-shadow:-12px 0 25px #0002}.drawer h2{margin:5px 0 20px;font-size:25px}.drawer>button:not(.drawer-close){width:100%;padding:15px 10px;border:0;border-bottom:1px solid #e9eff7;background:white;text-align:left;color:var(--navy);font-weight:760}.drawer-close{float:right;background:#f3f8ff;border:0;border-radius:12px;width:35px;height:35px;font-size:22px}.drawer .info{margin:20px 3px;color:#8292a7;font-size:12px;line-height:1.7}.toast{position:fixed;z-index:120;bottom:calc(85px + var(--bottom-safe));left:50%;transform:translateX(-50%);width:max-content;max-width:90%;padding:12px 18px;border-radius:40px;background:#102b4eea;color:#fff;font-weight:700;font-size:13px;box-shadow:0 6px 24px #0003;animation:appear .15s}.empty-image{height:130px;background:#eaf4fc;display:grid;place-items:center;color:#8cb9df}.filters-row{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 16px}.filters-row .pill{font-size:12px;padding:8px 10px;box-shadow:none}.small-meta{font-size:11px;color:#9ba7b5;margin-top:8px}.section-scope{display:flex;gap:7px;align-items:center;color:#63758e;font-size:12px;margin-top:5px}.badge-demo{display:inline-block;border-radius:30px;padding:4px 8px;background:#fff6e5;color:#a2711f;font-size:10px;font-weight:750}
-    @keyframes appear{from{opacity:0}to{opacity:1}}
-    @media(max-width:700px){.app{min-height:100dvh}.header{height:89px;padding:10px 16px}.brand-logo{height:57px;width:57px}.brand-word{font-size:32px}.brand-roman{font-size:10px;letter-spacing:4.1px}.header-right{gap:5px}.icon-button{width:35px}.hero{height:294px}.hero-copy{padding:22px 21px}.hero h1{font-size:33px;line-height:1.34;margin-bottom:8px}.hero p{font-size:12px;line-height:1.7}.hero-search{bottom:14px;min-height:54px;padding:6px 6px 6px 16px}.hero-search input{font-size:13px;padding:0 7px}.hero-search svg{width:19px}.search-submit{height:43px;padding:0 20px;font-size:14px}.chips{margin:10px 10px 0;gap:5px;justify-content:space-between}.pill{padding:9px 7px;font-size:10px;gap:3px;flex-shrink:0}.pill svg{width:16px;height:16px}.app-main{padding:0 14px 115px}.app-main-home{padding-left:0;padding-right:0}.app-main-home>.section{margin-left:14px;margin-right:14px}.intro-notice{font-size:9px;margin-top:3px}.section{margin-top:24px}.section h2{font-size:22px}.section-link{font-size:11px}.section-desc{font-size:11px;margin-bottom:10px}.card-grid{gap:8px}.hotel-card{border-radius:10px}.hotel-photo{height:81px}.hotel-body{padding:7px 6px 8px}.hotel-name{font-size:11px;line-height:1.35;min-height:30px}.hotel-place,.hotel-rating{font-size:9px}.stars{font-size:10px;letter-spacing:-2px}.hotel-rating{gap:3px}.hotel-price{font-size:15px;margin:4px 0}.hotel-price small{font-size:8px;display:inline}.verified-pill{font-size:8px;padding:3px 6px;margin-bottom:7px}.soft-action{padding:8px 2px;font-size:9px;gap:3px}.soft-action svg{width:12px;height:12px}.heart{width:27px;height:27px;top:5px;right:5px}.heart svg{width:20px;height:20px}.spot-grid{gap:6px}.spot-card{border-radius:9px}.spot-card img{height:51px}.spot-body{padding:6px 5px}.spot-name{font-size:10px;margin:0 0 4px}.spot-detail{font-size:8px;line-height:1.35;min-height:32px;margin:0 0 5px}.spot-distance{font-size:8px;gap:2px}.spot-distance svg{width:11px;height:11px}.features{gap:7px}.feature{min-height:87px;border-radius:8px;padding:8px}.feature strong{font-size:11px}.feature small{font-size:8px}.feature-arrow{width:19px;height:19px;right:6px;bottom:6px}.page h2{font-size:23px}.results-grid{gap:9px}.results-grid .hotel-photo{height:130px}.results-grid .hotel-name{font-size:14px;min-height:22px}.results-grid .hotel-body{padding:10px}.results-grid .hotel-price{font-size:18px}.results-grid .hotel-place,.results-grid .hotel-rating{font-size:11px}.results-grid .soft-action{font-size:11px;padding:10px}.results-grid .spot-card img{height:126px}.results-grid .spot-name{font-size:15px}.results-grid .spot-body{padding:10px}.results-grid .spot-detail{font-size:11px}.results-grid .spot-distance{font-size:10px}.detail-cover{height:230px}.nearby-item{grid-template-columns:83px 1fr auto;gap:10px}.nearby-item img{width:83px;height:70px}.nearby-item strong{font-size:13px}.nearby-item p{font-size:10px}}
-    @media(max-width:370px){.header{height:78px;padding:8px 12px}.brand-logo{width:49px;height:49px}.brand-word{font-size:27px}.brand-roman{font-size:9px}.hero{height:270px}.hero h1{font-size:29px}.hero p{font-size:11px}.pill{font-size:9px;padding:7px 5px}.pill svg{width:14px;height:14px}.hotel-photo{height:70px}.hotel-price{font-size:13px}.section h2{font-size:21px}.spot-card img{height:45px}.spot-name{font-size:9px}.spot-distance{font-size:7px}}
-    @media(min-width:701px){.header{padding:12px 34px}.desktop-nav{display:flex}.bottom-nav{display:none}.app-main{padding:0 35px 80px}.app-main-home{padding-left:0;padding-right:0}.app-main-home>.section{margin-left:35px;margin-right:35px}.hero{height:350px}.card-grid{gap:18px}.hotel-photo{height:175px}.spot-card img{height:125px}.section{margin-top:31px}.features .feature{min-height:160px}.page{padding:30px 0}.results-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media(min-width:1000px){.hero{height:420px}.hero-copy{padding:50px}.hero-search{max-width:900px;left:50%;transform:translateX(-50%)}.hotel-photo{height:185px}.spot-card img{height:145px}.section h2{font-size:30px}}
+    :root{
+      --bg:#f3f7fc;
+      --card:#ffffff;
+      --text:#112a52;
+      --sub:#6f7f97;
+      --line:#dbe5f2;
+      --blue:#2f8cff;
+      --blue2:#5cb2ff;
+      --shadow:0 14px 30px rgba(25,73,148,.10);
+      --radius:24px;
+      --safe-bottom:max(20px, env(safe-area-inset-bottom));
+      --safe-top:max(16px, env(safe-area-inset-top));
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#edf4fb 0%, #f9fbff 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Yu Gothic",sans-serif}
+    img{max-width:100%;display:block}
+    button,input{font:inherit}
+    .app{max-width:440px;margin:0 auto;min-height:100svh;background:#fff;position:relative;box-shadow:0 0 0 1px rgba(255,255,255,.6)}
+    .topbar{padding:calc(var(--safe-top) + 8px) 20px 14px;display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(219,229,242,.7)}
+    .topbar .logo{width:58px;height:58px;border-radius:50%;overflow:hidden;box-shadow:0 8px 20px rgba(16,42,82,.12);background:#fff;border:1px solid #eef3fa;flex:0 0 auto}
+    .brand{line-height:1}
+    .brand .jp{font-size:31px;font-weight:800;letter-spacing:.06em;color:#2490ff}
+    .brand .en{font-size:11px;letter-spacing:.26em;color:#2490ff;font-weight:700;margin-top:8px}
+    .top-icons{margin-left:auto;display:flex;align-items:center;gap:16px;color:#193560}
+    .iconbtn{width:38px;height:38px;border:none;background:#fff;border-radius:50%;box-shadow:0 6px 16px rgba(17,42,82,.08);display:grid;place-items:center;cursor:pointer}
+    .hero{position:relative;padding:0 0 18px;background:linear-gradient(180deg,#fbfdff 0,#f4f9ff 100%)}
+    .hero-media{position:relative;height:330px;overflow:hidden}
+    .hero-media img{width:100%;height:100%;object-fit:cover}
+    .hero-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(246,251,255,.15) 0%, rgba(34,113,212,.30) 38%, rgba(34,124,240,.88) 100%)}
+    .hero-copy{position:absolute;left:20px;right:20px;top:32px;color:#0b2146;z-index:2}
+    .hero-copy h1{margin:0 0 12px;font-size:34px;line-height:1.2;letter-spacing:.02em;font-weight:900;color:#0f2550;text-shadow:0 1px 0 rgba(255,255,255,.18)}
+    .hero-copy p{margin:0;font-size:16px;line-height:1.7;font-weight:700;color:#183563}
+    .searchbar{margin:-36px 20px 0;position:relative;z-index:3;background:#fff;border-radius:999px;padding:12px 12px 12px 18px;display:flex;gap:10px;align-items:center;box-shadow:0 16px 36px rgba(25,73,148,.18)}
+    .searchbar input{border:none;outline:none;flex:1;font-size:16px;color:#274160;background:transparent}
+    .searchbar input::placeholder{color:#92a0b5}
+    .searchbar button{border:none;border-radius:999px;background:linear-gradient(180deg,var(--blue2),var(--blue));color:#fff;padding:15px 24px;font-weight:800;box-shadow:0 8px 16px rgba(47,140,255,.30);cursor:pointer}
+    .chips{display:flex;gap:10px;overflow:auto;padding:18px 20px 0;scrollbar-width:none}
+    .chips::-webkit-scrollbar{display:none}
+    .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:12px 15px;white-space:nowrap;font-weight:800;color:#24406e;display:flex;align-items:center;gap:8px;box-shadow:0 8px 16px rgba(17,42,82,.06);cursor:pointer}
+    .chip.active{background:#eef7ff;border-color:#b9d8ff;color:#0e57b7}
+    .content{padding:18px 20px 110px;background:linear-gradient(180deg,#fbfdff 0,#f7fbff 70%,#ffffff 100%)}
+    .note{font-size:12px;color:#8b99ab;text-align:center;margin:4px 0 18px}
+    .section{margin-top:18px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-bottom:12px}
+    .section-head h2{margin:0;font-size:29px;line-height:1.12;font-weight:900;color:#0f2550;letter-spacing:.01em}
+    .section-head a{color:#248cff;text-decoration:none;font-weight:800;white-space:nowrap}
+    .section-desc{margin:-4px 0 14px;color:#74859d;font-size:15px;line-height:1.6}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:6px}
+    .hotel-card{min-width:260px;background:var(--card);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(219,229,242,.65);scroll-snap-align:start}
+    .hotel-card .thumb{position:relative;height:168px;overflow:hidden}
+    .hotel-card .thumb img{width:100%;height:100%;object-fit:cover}
+    .fav{position:absolute;right:12px;top:12px;width:40px;height:40px;border:none;border-radius:50%;background:rgba(255,255,255,.92);box-shadow:0 8px 20px rgba(18,48,89,.16);display:grid;place-items:center;color:#fff;cursor:pointer}
+    .fav svg{stroke:#7c8ea9;fill:none}
+    .fav.active svg{fill:#ff6d8b;stroke:#ff6d8b}
+    .hotel-body{padding:14px 16px 16px}
+    .hotel-name{font-size:18px;font-weight:900;margin:0 0 4px;color:#102750}
+    .meta{color:#73849b;font-size:14px;margin-bottom:8px}
+    .rating{display:flex;align-items:center;gap:8px;color:#4e6078;font-size:14px;font-weight:700;margin-bottom:8px}
+    .stars{color:#f2b01e;letter-spacing:1px}
+    .price{display:flex;align-items:flex-end;gap:8px;margin-bottom:12px}
+    .price strong{font-size:24px;color:#142b58;line-height:1}
+    .price span{font-size:14px;color:#6f7f97}
+    .action{display:flex;gap:8px}
+    .action button{flex:1;border:none;background:#eef6ff;color:#1872de;border-radius:999px;padding:12px 14px;font-weight:800;cursor:pointer}
+    .spot-row{display:flex;gap:12px;overflow:auto;padding-bottom:6px;scrollbar-width:none}
+    .spot-row::-webkit-scrollbar{display:none}
+    .spot-card{min-width:146px;max-width:146px;background:#fff;border-radius:18px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(219,229,242,.65)}
+    .spot-card img{width:100%;height:94px;object-fit:cover}
+    .spot-body{padding:10px 11px 12px}
+    .spot-body h3{font-size:15px;line-height:1.3;margin:0 0 6px;color:#102750}
+    .spot-body p{font-size:12px;line-height:1.45;color:#6e8098;margin:0 0 7px}
+    .dist{font-size:12px;color:#72839a;font-weight:700}
+    .feature-row{display:flex;gap:12px;overflow:auto;padding-bottom:10px;scrollbar-width:none}
+    .feature-row::-webkit-scrollbar{display:none}
+    .feature{min-width:250px;height:118px;border-radius:20px;overflow:hidden;position:relative;box-shadow:var(--shadow)}
+    .feature img{width:100%;height:100%;object-fit:cover}
+    .feature::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,38,77,.72),rgba(18,38,77,.08))}
+    .feature .txt{position:absolute;left:16px;right:52px;bottom:16px;color:#fff;z-index:1}
+    .feature strong{display:block;font-size:28px;line-height:1;font-weight:900;margin-bottom:8px}
+    .feature span{font-size:14px;font-weight:700;color:rgba(255,255,255,.92)}
+    .feature .go{position:absolute;right:14px;bottom:14px;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;z-index:1}
+    .bottomnav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(440px,100%);background:rgba(255,255,255,.96);backdrop-filter:blur(16px);display:grid;grid-template-columns:repeat(5,1fr);padding:10px 8px calc(var(--safe-bottom) - 2px);border-top:1px solid rgba(219,229,242,.85);z-index:30}
+    .bottomnav button{border:none;background:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#7b8ba3;font-size:12px;font-weight:700;padding:6px 0;cursor:pointer}
+    .bottomnav button.active{color:#1f84f4}
+    .view{display:none}
+    .view.active{display:block}
+    .list{display:grid;gap:14px}
+    .list-card{background:#fff;border-radius:22px;box-shadow:var(--shadow);overflow:hidden;border:1px solid rgba(219,229,242,.65)}
+    .list-card img{width:100%;height:190px;object-fit:cover}
+    .list-card .body{padding:16px}
+    .tiny-note{margin-top:22px;padding:16px 18px;background:#f4f8fd;border:1px solid #dce7f5;border-radius:18px;color:#5f718c;font-size:13px;line-height:1.7}
+    .profile{display:grid;gap:14px}
+    .panel{background:#fff;border:1px solid rgba(219,229,242,.7);box-shadow:var(--shadow);border-radius:20px;padding:18px}
+    .panel h3{margin:0 0 10px;font-size:18px;color:#102750}
+    .panel p{margin:0;color:#64768f;line-height:1.8;font-size:14px}
+    .linkbtn{width:100%;border:none;background:#f3f8ff;color:#176fd8;padding:15px 16px;border-radius:16px;font-weight:800;text-align:left;cursor:pointer;margin-top:10px}
+    .empty{background:#fff;border:1px dashed #cfe0f3;border-radius:20px;padding:30px 18px;text-align:center;color:#6f8098;box-shadow:var(--shadow)}
+    .page-title{margin:0 0 8px;font-size:30px;font-weight:900;color:#0f2550}
+    .page-sub{margin:0 0 16px;color:#6d7e97;line-height:1.7}
+    @media (min-width:700px){
+      body{padding:16px}
+      .app{max-width:1180px;border-radius:34px;overflow:hidden;display:grid;grid-template-columns:320px 1fr;min-height:calc(100svh - 32px)}
+      .sidebar{display:block;background:linear-gradient(180deg,#f7fbff 0,#edf5ff 100%);border-right:1px solid #deebf8;padding:26px 18px 140px}
+      .mobile-only{display:none!important}
+      .desktop-main{display:block;min-width:0}
+      .desktopbrand{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding:10px}
+      .desktopbrand img{width:62px;height:62px;border-radius:50%;box-shadow:0 8px 20px rgba(16,42,82,.12)}
+      .desktopbrand .jp{font-size:32px;font-weight:900;color:#2490ff;letter-spacing:.06em}
+      .desktopbrand .en{font-size:11px;letter-spacing:.25em;font-weight:700;color:#2490ff;margin-top:6px}
+      .side-nav{display:grid;gap:10px}
+      .side-nav button{border:none;background:#fff;color:#23406d;padding:15px 16px;border-radius:18px;font-weight:800;text-align:left;box-shadow:0 10px 24px rgba(25,73,148,.08);cursor:pointer}
+      .side-nav button.active{background:#eaf4ff;color:#0f6fd8;outline:1px solid #cde2ff}
+      .side-note{margin-top:18px;background:#fff;border-radius:18px;padding:16px;line-height:1.7;color:#62748d;font-size:13px;box-shadow:var(--shadow)}
+      .topbar{position:static;padding:24px 28px 14px;border-bottom:none}
+      .hero-media{height:380px;border-radius:30px;margin:0 28px;overflow:hidden}
+      .hero-copy{left:48px;right:48px;top:38px}
+      .searchbar{margin:-40px 48px 0}
+      .chips{padding:18px 48px 0}
+      .content{padding:22px 48px 120px}
+      .section-head h2{font-size:34px}
+      .cards{grid-template-columns:repeat(3, minmax(250px, 1fr));overflow:visible}
+      .hotel-card{min-width:0}
+      .bottomnav{display:none}
+    }
+    @media (max-width:699px){.sidebar{display:none}}
   </style>
 </head>
 <body>
- <div id="app" class="app">
-  <header class="header">
-   <button class="brand" data-action="home" aria-label="そらたび ホームへ" style="background:none;border:0;padding:0;text-align:left">
-    <img class="brand-logo" src="assets/logo.png" alt="そらたび ロゴ" />
-    <span><span class="brand-word">そらたび</span><span class="brand-roman" style="display:block">SORATABI</span></span>
-   </button>
-   <nav class="desktop-nav" id="desktopNav" aria-label="メインメニュー"></nav>
-   <div class="header-right">
-    <button class="icon-button" data-action="notification" aria-label="お知らせ"><span data-icon="bell"></span></button>
-    <button class="icon-button" data-action="menu" aria-label="メニュー"><span data-icon="menu"></span></button>
-   </div>
-  </header>
-  <main id="main" class="app-main" aria-live="polite"></main>
- </div>
- <nav id="bottomNav" class="bottom-nav" aria-label="下部ナビゲーション"></nav>
- <div id="overlayRoot"></div>
- <div id="toastRoot"></div>
- <script>
- (function(){
-  'use strict';
-  const ASSET='assets/';
-  const RAKUTEN_TOP='https://travel.rakuten.co.jp/';
-  const ICONS={
-   home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
-   bed:'<path d="M3 4v16M3 8h10a4 4 0 0 1 4 4v3M3 15h18v5M17 11h2a2 2 0 0 1 2 2v2"/>',
-   pin:'<path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>',
-   heart:'<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/>',
-   user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',
-   bell:'<path d="M18 8a6 6 0 0 0-12 0c0 7-3 8-3 9h18c0-1-3-2-3-9ZM10 21h4"/>',
-   menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',
-   search:'<circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/>',
-   waves:'<path d="M2 8c3 0 3 2 5 2s3-2 5-2 3 2 5 2 3-2 5-2M2 15c3 0 3 2 5 2s3-2 5-2 3 2 5 2 3-2 5-2"/>',
-   bath:'<path d="M8 3c-4 4 3 4-1 8M13 3c-4 4 3 4-1 8M18 3c-4 4 3 4-1 8M3 15v2a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-2H3Z"/>',
-   mountain:'<path d="m2 20 7-13 4 7 3-5 6 11H2Z"/>',
-   activity:'<circle cx="15" cy="4" r="2"/><path d="m14 10-3 4 3 3-1 5M14 10l4 3 3 1M14 10l-4-2-4 3M11 14l-3 5"/>',
-   family:'<circle cx="9" cy="7" r="3"/><circle cx="17.5" cy="9" r="2.5"/><path d="M3 21v-5a6 6 0 0 1 12 0v5M15 15c4 0 6 2 6 5v1"/>',
-   chevron:'<path d="m9 5 7 7-7 7"/>',
-   arrowLeft:'<path d="m14 18-6-6 6-6"/>',
-   close:'<path d="M5 5l14 14M19 5 5 19"/>',
-   check:'<path d="m4 12 5 5L20 6"/>',
-   external:'<path d="M14 3h7v7M21 3l-10 10M20 14v6H4V4h6"/>',
-   calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18"/>',
-   info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7h.01"/>',
-   star:'<path d="m12 2 3.1 6.5 7.2 1-5.2 5.1 1.2 7.2L12 18.3l-6.3 3.5 1.2-7.2-5.2-5.1 7.2-1L12 2Z"/>',
-   filter:'<path d="M4 7h16M7 12h10M10 17h4"/>'
-  };
-  const svg=(name,sz=20,fill='none')=>`<svg width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]||ICONS.pin}</svg>`;
-  const esc=(v)=>String(v??'').replace(/[&<>"']/g,s=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
-  const clean=(v)=>String(v||'').normalize('NFKC').toLowerCase().replace(/\s+/g,'');
-  function matching(blob,query){return String(query||'').trim().split(/\s+/).every(part=>clean(blob).includes(clean(part)));}
-  function validBooking(url){try{const u=new URL(url);return u.protocol==='https:'&&(u.hostname==='travel.rakuten.co.jp'||u.hostname.endsWith('.travel.rakuten.co.jp'));}catch{return false;}}
-  const MOCK_HOTELS=[
-   {id:'demo-h1',name:'サンライズリゾート沖縄',area:'沖縄県・恩納村',prefecture:'沖縄県',image:'hotel1.jpg',price:'¥24,800〜',rating:'4.6',reviews:'320件',tags:['海','絶景','家族旅'],isDemo:true,description:'美しい青い海に包まれたリゾートステイをイメージしたサンプル施設です。'},
-   {id:'demo-h2',name:'潮風の宿 海の庵',area:'静岡県・伊東市',prefecture:'静岡県',image:'hotel2.jpg',price:'¥18,700〜',rating:'4.5',reviews:'280件',tags:['温泉','カップル','絶景'],isDemo:true,description:'夕景と温泉を楽しむ宿をイメージしたデザイン確認用サンプルです。'},
-   {id:'demo-h3',name:'碧のテラスホテル',area:'沖縄県・宮古島市',prefecture:'沖縄県',image:'hotel3.jpg',price:'¥28,500〜',rating:'4.7',reviews:'410件',tags:['海','家族旅','カップル'],isDemo:true,description:'開放感のある客室と美しいオーシャンビューをイメージしたサンプルです。'}
-  ];
-  const MOCK_SPOTS=[
-   {id:'demo-s1',name:'SUP体験',type:'体験施設',image:'attraction1.jpg',description:'透明度抜群の海で非日常を体験',tags:['海','体験','家族旅'],links:[{hotelId:'demo-h1',distance:1.2},{hotelId:'demo-h3',distance:2.6}]},
-   {id:'demo-s2',name:'展望台',type:'観光スポット',image:'attraction2.jpg',description:'絶景のパノラマビュー',tags:['絶景','海','カップル'],links:[{hotelId:'demo-h1',distance:2.4},{hotelId:'demo-h3',distance:1.3}]},
-   {id:'demo-s3',name:'温泉街散策',type:'観光スポット',image:'attraction3.jpg',description:'レトロな街並みで食べ歩き',tags:['温泉','体験','カップル'],links:[{hotelId:'demo-h1',distance:0.8},{hotelId:'demo-h2',distance:0.8}]},
-   {id:'demo-s4',name:'水族館',type:'観光施設',image:'attraction4.jpg',description:'大迫力の海の世界に出会う',tags:['海','家族旅','体験'],links:[{hotelId:'demo-h1',distance:3.1},{hotelId:'demo-h3',distance:4.2}]},
-   {id:'demo-s5',name:'ロープウェイ',type:'体験施設',image:'attraction5.jpg',description:'山頂からの絶景を満喫',tags:['絶景','体験','家族旅'],links:[{hotelId:'demo-h1',distance:5.6},{hotelId:'demo-h2',distance:3.5}]}
-  ];
-  const CHIPS=[['海','waves'],['温泉','bath'],['絶景','mountain'],['体験','activity'],['家族旅','family'],['カップル','heart']];
-  const NAV=[['home','ホーム','home'],['hotels','宿','bed'],['spots','周辺','pin'],['favorites','お気に入り','heart'],['profile','マイページ','user']];
-  const state={page:'home',query:'',chip:'',sort:'default',detailId:null,modal:false,hotels:MOCK_HOTELS,spots:MOCK_SPOTS,mode:'demo', favorites:new Set(),searchFocus:'all'};
-  try{JSON.parse(localStorage.getItem('soratabi_favs')||'[]').forEach(id=>state.favorites.add(id));}catch{}
-  let toastTimer;
-  function toast(message){const root=document.getElementById('toastRoot');root.innerHTML=`<div class="toast" role="status">${esc(message)}</div>`;clearTimeout(toastTimer);toastTimer=setTimeout(()=>root.innerHTML='',3400);}
-  const image=(name)=>ASSET+encodeURIComponent(name||'hero.jpg');
-  function hotelById(id){return state.hotels.find(h=>h.id===id);}
-  function spotById(id){return state.spots.find(s=>s.id===id);}
-  function nearbyForHotel(id){return state.spots.map(s=>({spot:s,link:(s.links||[]).find(x=>x.hotelId===id)})).filter(x=>x.link).sort((a,b)=>a.link.distance-b.link.distance);}
-  function hotelsForSpot(id){const s=spotById(id);return (s?.links||[]).map(l=>({hotel:hotelById(l.hotelId),link:l})).filter(x=>x.hotel).sort((a,b)=>a.link.distance-b.link.distance);}
-  function saveFav(id){if(state.favorites.has(id))state.favorites.delete(id);else state.favorites.add(id);try{localStorage.setItem('soratabi_favs',JSON.stringify([...state.favorites]));}catch{}toast(state.favorites.has(id)?'お気に入りに保存しました':'お気に入りを解除しました');render();}
-  function go(page,opts={}){state.page=page;state.detailId=opts.id||null;if('query' in opts)state.query=opts.query;if('chip' in opts)state.chip=opts.chip;if('searchFocus' in opts)state.searchFocus=opts.searchFocus;state.modal=false;render();window.scrollTo({top:0,behavior:'auto'});}
-  function hotelCard(h){const fav=state.favorites.has(h.id);return `<article class="hotel-card">
-    <div class="photo-wrap clickable" data-action="hotel-detail" data-id="${esc(h.id)}"><img loading="lazy" class="hotel-photo" src="${image(h.image)}" alt="${esc(h.name)}のイメージ写真" /><button class="heart ${fav?'saved':''}" data-action="favorite" data-id="${esc(h.id)}" aria-label="${fav?'お気に入りから外す':'お気に入りに追加'}">${svg('heart',23,fav?'currentColor':'none')}</button></div>
-    <div class="hotel-body"><h3 class="hotel-name clickable" data-action="hotel-detail" data-id="${esc(h.id)}">${esc(h.name)}</h3><p class="hotel-place">${esc(h.area)}</p><p class="hotel-rating">${h.rating?`<span class="stars" aria-hidden="true">★★★★★</span> ${esc(h.rating)} <span>(${esc(h.reviews||'口コミ情報なし')})</span>`:'評価情報は未取得'}</p><div class="hotel-price">${esc(h.price||'料金は予約先で確認')} <small>${h.price?'/ 1泊・2名':''}</small></div><span class="verified-pill ${h.isDemo?'demo':''}">${h.isDemo?'デザイン用サンプル':'楽天トラベル掲載確認済'}</span><button class="soft-action" data-action="hotel-detail" data-id="${esc(h.id)}">${svg('pin',15)} 近くの観光を見る ${svg('chevron',13)}</button></div>
-   </article>`;}
-  function spotCard(s, hotelId){const linked=(s.links||[]).find(l=>l.hotelId===hotelId)||s.links?.[0];const distance=linked?`宿から${Number(linked.distance).toFixed(1)}km`:'周辺の宿と紐づけ済';return `<article class="spot-card clickable" data-action="spot-detail" data-id="${esc(s.id)}"><img loading="lazy" src="${image(s.image)}" alt="${esc(s.name)}のイメージ写真"/><div class="spot-body"><h3 class="spot-name">${esc(s.name)}</h3><p class="spot-detail">${esc(s.description)}</p><div class="spot-distance">${svg('pin',12)}${esc(distance)}</div></div></article>`;}
-  function featureCard(title,sub,imageName,chip){return `<button class="feature" data-action="feature" data-chip="${esc(chip)}"><img loading="lazy" src="${image(imageName)}" alt="${esc(title)}"/><span><strong>${esc(title)}</strong><small>${esc(sub)}</small></span><span class="feature-arrow">${svg('chevron',17)}</span></button>`;}
-  function home(){return `<section class="hero" aria-labelledby="hero-heading"><img class="hero-bg" src="${image('hero.jpg')}" alt="青い海とリゾートホテル、ヤシの木が広がる海岸の風景"/><div class="hero-copy"><h1 id="hero-heading">泊まれる宿から、<br>旅を広げる。</h1><p>楽天トラベル掲載の宿と、その近くで楽しめる<br>観光・体験をまとめて検索</p></div><form class="hero-search" id="heroSearch">${svg('search',23)}<input name="q" aria-label="検索キーワード" autocomplete="off" placeholder="宿名・エリア・観光地を検索" value="${esc(state.query)}"/><button class="search-submit" type="submit">検索</button></form></section>
-   <div class="chips" role="group" aria-label="旅行のテーマで探す">${CHIPS.map(([label,ico])=>`<button class="pill" data-action="chip" data-chip="${label}">${svg(ico,18)}${label}</button>`).join('')}</div>
-   <div class="intro-notice">${state.mode==='demo'?'※現在は操作確認用のデモです。施設・料金・評価・距離はサンプル表示です。':'掲載する宿は楽天トラベル掲載を確認した施設のみです。'}</div>
-   <section class="section" aria-labelledby="hotels-heading"><div class="section-header"><h2 id="hotels-heading">宿を探す</h2><button class="section-link" data-action="nav" data-page="hotels">すべて見る ${svg('chevron',14)}</button></div><p class="section-desc">楽天トラベル掲載の宿だけ。泊まって、周辺の観光も楽しめます。</p><div class="card-grid">${state.hotels.slice(0,3).map(hotelCard).join('')||'<div class="empty">現在、掲載できる宿がありません。</div>'}</div></section>
-   <section class="section" aria-labelledby="spots-heading"><div class="section-header"><h2 id="spots-heading">宿の近くで楽しむ</h2><button class="section-link" data-action="nav" data-page="spots">すべて見る ${svg('chevron',14)}</button></div><p class="section-desc">宿の周辺にある観光スポット・体験施設・グルメなどをご紹介。</p><div class="spot-grid">${state.spots.slice(0,5).map(s=>spotCard(s,'demo-h1')).join('')||'<div class="empty">周辺のスポットは準備中です。</div>'}</div></section>
-   <section class="section" aria-labelledby="features-heading"><div class="section-header"><h2 id="features-heading">人気の特集</h2><button class="section-link" data-action="nav" data-page="hotels">すべて見る ${svg('chevron',14)}</button></div><div class="features">${featureCard('海が見える宿','青い海で、心を解き放つ','feature1.jpg','海')}${featureCard('週末に行ける温泉旅','癒しのひとときを、すぐそこに','feature2.jpg','温泉')}${featureCard('宿から近い体験特集','旅をもっと特別な思い出に','feature3.jpg','体験')}</div></section>`;}
-  function pageHeader(title,sub){return `<div class="page-head"><div><h2>${esc(title)}</h2>${sub?`<p class="sub">${esc(sub)}</p>`:''}</div></div>`;}
-  function searchPanel(){return `<form class="searchpanel" id="pageSearch">${svg('search',20)}<input name="q" autocomplete="off" value="${esc(state.query)}" aria-label="キーワード検索" placeholder="宿名・エリア・観光地を検索"/><button type="submit">検索</button></form>`;}
-  function filterRow(){return `<div class="filters-row">${CHIPS.map(([name,ico])=>`<button class="pill ${state.chip===name?'active':''}" data-action="toggle-chip" data-chip="${name}">${svg(ico,16)}${name}</button>`).join('')}${state.chip?`<button class="pill" data-action="clear-chip">${svg('close',14)}解除</button>`:''}</div>`;}
-  function hotelsPage(){let arr=state.hotels.filter(h=>matching([h.name,h.area,h.description,...(h.tags||[])].join(' '),state.query) && (!state.chip||h.tags?.includes(state.chip)));if(state.sort==='price')arr.sort((a,b)=>Number((a.price||'').replace(/\D/g,''))-Number((b.price||'').replace(/\D/g,'')));if(state.sort==='name')arr.sort((a,b)=>a.name.localeCompare(b.name,'ja'));return `<div class="page">${pageHeader('宿を探す','楽天トラベル掲載の確認が取れた宿のみを掲載する設計です。')}${searchPanel()}${filterRow()}<div class="sort-bar"><strong>${arr.length}件の宿${state.mode==='demo'?'（サンプル）':''}</strong><select id="hotelSort" aria-label="並び替え"><option value="default">おすすめ順</option><option value="name" ${state.sort==='name'?'selected':''}>名前順</option><option value="price" ${state.sort==='price'?'selected':''}>参考価格順</option></select></div>${arr.length?`<div class="results-grid">${arr.map(hotelCard).join('')}</div>`:empty('該当する宿がありません','キーワードや条件を変更してみてください。')}</div>`;}
-  function spotListCard(s){const nearby=hotelsForSpot(s.id).length;return `<article class="spot-card"><div class="clickable" data-action="spot-detail" data-id="${esc(s.id)}"><img loading="lazy" src="${image(s.image)}" alt="${esc(s.name)}のイメージ写真"/></div><div class="spot-body"><h3 class="spot-name clickable" data-action="spot-detail" data-id="${esc(s.id)}">${esc(s.name)}</h3><p class="spot-detail">${esc(s.description)}</p><p class="spot-distance">${svg('pin',13)} 紐づく宿 ${nearby}件</p><button class="soft-action" data-action="spot-detail" data-id="${esc(s.id)}">近くの宿を探す ${svg('chevron',13)}</button></div></article>`;}
-  function spotsPage(){const arr=state.spots.filter(s=>matching([s.name,s.type,s.description,...(s.tags||[])].join(' '),state.query)&&(!state.chip||s.tags?.includes(state.chip)));return `<div class="page">${pageHeader('宿の近くで楽しむ','掲載宿と紐づけられた観光・体験施設だけを表示します。')}${searchPanel()}${filterRow()}<div class="sort-bar"><strong>${arr.length}件のスポット${state.mode==='demo'?'（サンプル）':''}</strong></div>${arr.length?`<div class="results-grid">${arr.map(spotListCard).join('')}</div>`:empty('スポットが見つかりません','条件を変更して探してみてください。')}</div>`;}
-  function searchPage(){const q=state.query;const hs=state.hotels.filter(h=>matching([h.name,h.area,h.description,...(h.tags||[])].join(' '),q));const ss=state.spots.filter(s=>matching([s.name,s.type,s.description,...(s.tags||[])].join(' '),q));return `<div class="page">${pageHeader('検索結果',q?`「${q}」の検索結果`:'宿と観光・体験をまとめて探します')}${searchPanel()}${hs.length?`<section class="section"><div class="section-header"><h2>宿（${hs.length}件）</h2><button class="section-link" data-action="nav" data-page="hotels">宿をすべて見る ${svg('chevron',14)}</button></div><div class="results-grid">${hs.map(hotelCard).join('')}</div></section>`:''}${ss.length?`<section class="section"><div class="section-header"><h2>観光・体験（${ss.length}件）</h2><button class="section-link" data-action="nav" data-page="spots">周辺をすべて見る ${svg('chevron',14)}</button></div><div class="results-grid">${ss.map(spotListCard).join('')}</div></section>`:''}${!hs.length&&!ss.length?empty('一致する施設がありません','宿名・地名・観光スポット名などで検索してみてください。'):''}</div>`;}
-  function favoritesPage(){const hotels=state.hotels.filter(h=>state.favorites.has(h.id));const spots=state.spots.filter(s=>state.favorites.has(s.id));return `<div class="page">${pageHeader('お気に入り','保存した宿やスポットをいつでも確認できます。')}${hotels.length?`<section class="section"><div class="section-header"><h2>保存した宿</h2></div><div class="results-grid">${hotels.map(hotelCard).join('')}</div></section>`:''}${spots.length?`<section class="section"><div class="section-header"><h2>保存したスポット</h2></div><div class="results-grid">${spots.map(spotListCard).join('')}</div></section>`:''}${!hotels.length&&!spots.length?empty('お気に入りはまだありません','宿泊施設カードのハートを押すと、ここに保存されます。'):''}</div>`;}
-  function profilePage(){return `<div class="page">${pageHeader('マイページ','そらたびを自分らしい旅行探しに。')}<div class="profile-panel"><h3>${svg('info',19)} 現在のデータについて</h3><p>${state.mode==='demo'?'このアプリは画面と操作の確認用です。宿の名称・価格・評価・距離・写真はデモ用サンプルであり、実際の掲載・予約可否を保証しません。':'このアプリは楽天トラベル掲載確認済み宿を対象に表示しています。料金・予約可否は楽天トラベルでご確認ください。'}</p></div><div class="profile-panel"><h3>そらたびの仕組み</h3><p>宿を選ぶと、その宿に紐づく観光地・体験施設が表示されます。観光地からは近くの掲載宿を逆引きできます。実データ導入後も、紐づく宿がない観光施設は表示しません。</p></div><div class="profile-list"><button data-action="nav" data-page="hotels">全国の宿を探す ${svg('chevron',17)}</button><button data-action="nav" data-page="spots">観光・体験から宿を探す ${svg('chevron',17)}</button><button data-action="nav" data-page="favorites">お気に入り一覧 ${svg('chevron',17)}</button><button data-action="rakuten">楽天トラベルを開く ${svg('external',16)}</button></div><p class="detail-hint" style="margin-top:23px">本サービスは現時点では予約・決済を処理しません。予約手続きは外部の楽天トラベルサイトで行います。楽天の公式サービスであることを示すものではありません。</p></div>`;}
-  function empty(title,msg){return `<div class="empty"><strong>${esc(title)}</strong>${esc(msg)}<br/><button class="secondary" data-action="reset">すべての条件を解除</button></div>`;}
-  function hotelDetail(){const h=hotelById(state.detailId);if(!h)return empty('宿がありません','一覧に戻ってください。');const nearby=nearbyForHotel(h.id);return `<div class="page"><div class="page-head"><button class="back" data-action="nav" data-page="hotels" aria-label="宿の一覧に戻る">${svg('arrowLeft',23)}</button><div><h2>宿の詳細</h2><p class="sub">宿の近くの観光・体験を探す</p></div></div><img class="detail-cover" src="${image(h.image)}" alt="${esc(h.name)}のイメージ写真"/><h1 class="detail-title">${esc(h.name)}</h1><p class="detail-strap">${esc(h.area)} ・ ${esc(h.rating||'未取得')} ★ (${esc(h.reviews||'レビュー未取得')})</p><div class="detail-info">${(h.tags||[]).map(t=>`<span class="info-token">${esc(t)}</span>`).join('')}<span class="info-token">${h.isDemo?'デザイン確認用サンプル':'楽天トラベル掲載確認済'}</span></div><p style="color:#60738b;line-height:1.8">${esc(h.description||'宿の説明文は準備中です。')}</p><div class="detail-price">${esc(h.price||'料金は予約先で確認')} <small>${h.price?'/ 1泊・2名':'楽天トラベルで確認'}</small></div><div class="detail-actions"><button class="primary" data-action="booking" data-id="${esc(h.id)}">楽天トラベルで宿を探す ${svg('external',16)}</button><button class="secondary" data-action="favorite" data-id="${esc(h.id)}">${svg('heart',17,state.favorites.has(h.id)?'currentColor':'none')} ${state.favorites.has(h.id)?'保存済み':'お気に入り'}</button></div>${h.isDemo?'<p class="detail-hint">※施設名・料金・評価はサンプルです。上のボタンは実在する特定施設の予約ページではなく、楽天トラベルのトップページに移動します。</p>':'<p class="detail-hint">料金・空室・予約条件は、楽天トラベルのリンク先でご確認ください。</p>'}<h2 class="detail-section-title">この宿の近くで楽しむ</h2><p class="section-desc">この宿と関連づけられた観光地・体験を、近い順に紹介します。</p><div class="nearby-list">${nearby.length?nearby.map(({spot,link})=>`<button class="nearby-item" data-action="spot-detail" data-id="${esc(spot.id)}"><img src="${image(spot.image)}" alt=""/><span><strong>${esc(spot.name)}</strong><p>${esc(spot.description)}</p><span class="distance-label">宿から${Number(link.distance).toFixed(1)}km ${h.isDemo?'（表示例）':''}</span></span>${svg('chevron',19)}</button>`).join(''):empty('関連スポットは準備中です','登録でき次第、ここに表示します。')}</div></div>`;}
-  function spotDetail(){const s=spotById(state.detailId);if(!s)return empty('スポットがありません','一覧に戻ってください。');const matches=hotelsForSpot(s.id);const saved=state.favorites.has(s.id);return `<div class="page"><div class="page-head"><button class="back" data-action="nav" data-page="spots" aria-label="観光・体験の一覧に戻る">${svg('arrowLeft',23)}</button><div><h2>観光・体験の詳細</h2><p class="sub">このスポットから、近くの宿を探す</p></div></div><img class="detail-cover" src="${image(s.image)}" alt="${esc(s.name)}のイメージ写真"/><h1 class="detail-title">${esc(s.name)}</h1><p class="detail-strap">${esc(s.type)} ${state.mode==='demo'?'・デザイン用サンプル':''}</p><div class="detail-info">${(s.tags||[]).map(t=>`<span class="info-token">${esc(t)}</span>`).join('')}</div><p style="color:#60738b;line-height:1.8">${esc(s.description)}</p><div class="detail-actions"><button class="secondary" data-action="favorite" data-id="${esc(s.id)}">${svg('heart',17,saved?'currentColor':'none')} ${saved?'保存済み':'お気に入り'}</button></div><h2 class="detail-section-title">このスポットの近くに泊まる</h2><p class="section-desc">楽天トラベル掲載の確認が取れた宿だけを紹介する構成です。</p><div class="nearby-list">${matches.length?matches.map(({hotel,link})=>`<button class="nearby-item linked-hotel" data-action="hotel-detail" data-id="${esc(hotel.id)}"><img src="${image(hotel.image)}" alt=""/><span><strong>${esc(hotel.name)}</strong><p>${esc(hotel.area)}</p><span class="distance-label">このスポットから${Number(link.distance).toFixed(1)}km ${hotel.isDemo?'（表示例）':''}</span></span>${svg('chevron',19)}</button>`).join(''):empty('近くの宿がありません','紐づく楽天トラベル掲載宿が確認でき次第表示します。')}</div><p class="detail-hint">${state.mode==='demo'?'※このページのスポット・宿と距離は表示イメージです。':'※距離は施設間の直線距離の参考表示です。'}</p></div>`;}
-  function render(){const main=document.getElementById('main');const detail=state.page==='hotel-detail'||state.page==='spot-detail';main.innerHTML=state.page==='home'?home():state.page==='search'?searchPage():state.page==='hotels'?hotelsPage():state.page==='spots'?spotsPage():state.page==='favorites'?favoritesPage():state.page==='profile'?profilePage():state.page==='hotel-detail'?hotelDetail():state.page==='spot-detail'?spotDetail():home();main.classList.toggle('app-main-home',state.page==='home');document.getElementById('bottomNav').innerHTML=NAV.map(([id,label,ico])=>`<button class="${(detail?(state.page==='hotel-detail'?'hotels':'spots'):(state.page==='search'?'hotels':state.page))===id?'active':''}" data-action="nav" data-page="${id}" aria-label="${label}">${svg(ico,24)}<span>${label}</span></button>`).join('');document.getElementById('desktopNav').innerHTML=NAV.map(([id,label])=>`<button class="${(detail?(state.page==='hotel-detail'?'hotels':'spots'):(state.page==='search'?'hotels':state.page))===id?'active':''}" data-action="nav" data-page="${id}">${label}</button>`).join('');document.querySelectorAll('[data-icon]').forEach(el=>el.innerHTML=svg(el.dataset.icon,24));}
-  function closeMenu(){document.getElementById('overlayRoot').innerHTML='';}
-  function showMenu(){document.getElementById('overlayRoot').innerHTML=`<div class="overlay" data-action="close-menu"><aside class="drawer" role="dialog" aria-label="メニュー"><button class="drawer-close" data-action="close-menu" aria-label="閉じる">×</button><img src="${image('logo.png')}" width="62" height="62" alt=""/><h2>そらたび</h2>${NAV.map(([id,label])=>`<button data-action="nav" data-page="${id}">${label}　›</button>`).join('')}<button data-action="rakuten">楽天トラベルを開く　↗</button><div class="info">${state.mode==='demo'?'※この版はデザイン用サンプルデータで動いています。実際の施設・価格の取得は未接続です。':'楽天トラベル掲載確認済みデータで表示しています。'}</div></aside></div>`;}
-  document.addEventListener('click',(e)=>{const el=e.target.closest('[data-action]');if(!el)return;const type=el.dataset.action;const id=el.dataset.id;e.preventDefault();e.stopPropagation();if(type==='home')go('home',{query:'',chip:''});if(type==='nav')go(el.dataset.page,{query:'',chip:''});if(type==='hotel-detail')go('hotel-detail',{id});if(type==='spot-detail')go('spot-detail',{id});if(type==='favorite')saveFav(id);if(type==='chip')go(el.dataset.chip==='体験'?'spots':'hotels',{chip:el.dataset.chip,query:''});if(type==='toggle-chip'){state.chip=state.chip===el.dataset.chip?'':el.dataset.chip;render();}if(type==='clear-chip'||type==='reset'){state.chip='';state.query='';render();}if(type==='feature')go(el.dataset.chip==='体験'?'spots':'hotels',{chip:el.dataset.chip,query:''});if(type==='menu')showMenu();if(type==='close-menu')closeMenu();if(type==='notification')toast('現在、お知らせはありません。');if(type==='booking'){const h=hotelById(id);const url=validBooking(h?.rakutenUrl)?h.rakutenUrl:RAKUTEN_TOP;window.open(url,'_blank','noopener,noreferrer');}if(type==='rakuten')window.open(RAKUTEN_TOP,'_blank','noopener,noreferrer');});
-  document.addEventListener('submit',(e)=>{if(!['heroSearch','pageSearch'].includes(e.target.id))return;e.preventDefault();const q=new FormData(e.target).get('q')?.toString()||'';state.query=q;state.chip='';if(e.target.id==='heroSearch')go('search',{query:q,chip:''});else render();});
-  document.addEventListener('change',e=>{if(e.target.id==='hotelSort'){state.sort=e.target.value;render();}});
-  // Verified external dataset: every hotel must explicitly pass the Rakuten listing check.
-  // Spots without links to one of those approved hotels are never displayed.
-  async function loadVerifiedData(){try{const r=await fetch('data/places.json',{cache:'no-store'});if(!r.ok)return;const data=await r.json();const hotels=(Array.isArray(data.hotels)?data.hotels:[]).filter(h=>h.verifiedRakuten===true&&validBooking(h.rakutenUrl)&&typeof h.id==='string'&&h.name).map(h=>({...h,isDemo:false,image:h.image||'hero.jpg'}));if(!hotels.length)return;const good=new Set(hotels.map(h=>h.id));const distKm=(a,b,c,d)=>{const toRad=v=>v*Math.PI/180;const deltaLat=toRad(c-a),deltaLng=toRad(d-b);const x=Math.sin(deltaLat/2)**2+Math.cos(toRad(a))*Math.cos(toRad(c))*Math.sin(deltaLng/2)**2;return 6371*2*Math.asin(Math.min(1,Math.sqrt(x)));};const spots=(Array.isArray(data.spots)?data.spots:[]).filter(s=>s.verifiedPlace===true).map(s=>{const links=hotels.map(h=>{const direct=(Array.isArray(s.links)?s.links:[]).find(l=>l.hotelId===h.id);let distance=direct?.distance;if([s.lat,s.lng,h.lat,h.lng].every(v=>Number.isFinite(Number(v)))&&[s.lat,s.lng,h.lat,h.lng].every(v=>v!==null&&v!==''&&v!==undefined)){distance=distKm(Number(s.lat),Number(s.lng),Number(h.lat),Number(h.lng));}return {hotelId:h.id,distance:Number(distance)};}).filter(l=>good.has(l.hotelId)&&Number.isFinite(l.distance)&&l.distance>=0&&l.distance<=25).sort((a,b)=>a.distance-b.distance);return {...s,links};}).filter(s=>s.id&&s.name&&s.links.length).map(s=>({...s,image:s.image||'scenic_fujisan.jpg'}));state.hotels=hotels;state.spots=spots;state.mode='verified';render();}catch(err){/* Local-file preview works with bundled sample content. */}}
-  render();loadVerifiedData();
-  if('serviceWorker' in navigator&&location.protocol==='https:'){window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));}
- })();
- </script>
+<div class="app">
+  <aside class="sidebar">
+    <div class="desktopbrand">
+      <img src="assets/logo.png" alt="そらたびロゴ">
+      <div>
+        <div class="jp">そらたび</div>
+        <div class="en">SORATABI</div>
+      </div>
+    </div>
+    <div class="side-nav" id="sideNav"></div>
+    <div class="side-note">
+      <strong>ご案内</strong><br>
+      写真が確実に表示されるよう、画像は別ファイルで読み込む構成に修正しています。<br><br>
+      ※ 現在はデザイン確認用のサンプルです。<br>
+      ※ 将来は <strong>楽天トラベルで予約可能な宿のみ</strong> を掲載する想定です。<br>
+      ※ 予約手続きは外部ページへ移動する方式を想定しています。
+    </div>
+  </aside>
+
+  <main class="desktop-main">
+    <header class="topbar mobile-only">
+      <div class="logo"><img src="assets/logo.png" alt="そらたびロゴ"></div>
+      <div class="brand"><div class="jp">そらたび</div><div class="en">SORATABI</div></div>
+      <div class="top-icons">
+        <button class="iconbtn" type="button" aria-label="お知らせ">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 17h5l-1.4-1.4A2 2 0 0 1 18 14.2V11a6 6 0 0 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5"/><path d="M10 17a2 2 0 0 0 4 0"/></svg>
+        </button>
+        <button class="iconbtn" type="button" aria-label="メニュー">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section id="home" class="view active">
+      <section class="hero">
+        <div class="hero-media">
+          <img src="assets/hero.jpg" alt="青い海とリゾートホテル、ヤシの木が広がる海岸の風景">
+          <div class="hero-copy">
+            <h1>泊まれる宿から、<br>旅を広げる。</h1>
+            <p>全国の宿と、その近くで楽しめる<br>観光・体験をまとめて検索</p>
+          </div>
+        </div>
+        <form class="searchbar" id="searchForm">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#667892" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input id="searchInput" placeholder="宿名・エリア・観光地を検索">
+          <button type="submit">検索</button>
+        </form>
+        <div class="chips" id="chips"></div>
+      </section>
+
+      <section class="content">
+        <div class="note">※ 現在は操作確認用のデモです。施設・料金・距離・評価はサンプル表示です。</div>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>宿を探す</h2>
+              <p class="section-desc">気になる宿を選ぶと、近くの観光・体験もあわせて見られます。</p>
+            </div>
+            <a href="#" data-view="hotels">すべて見る</a>
+          </div>
+          <div class="cards" id="homeHotels"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>宿の近くで楽しむ</h2>
+              <p class="section-desc">観光スポット・体験施設・街歩きの候補を、近い順のイメージで紹介します。</p>
+            </div>
+            <a href="#" data-view="spots">すべて見る</a>
+          </div>
+          <div class="spot-row" id="homeSpots"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>人気の特集</h2>
+            </div>
+            <a href="#" data-view="search">すべて見る</a>
+          </div>
+          <div class="feature-row">
+            <div class="feature"><img src="assets/hotel_tropical.jpg" alt="海が見える宿"><div class="txt"><strong>海が見える宿</strong><span>青い海で、心を解き放つ</span></div><div class="go">›</div></div>
+            <div class="feature"><img src="assets/hotel_onsen.jpg" alt="週末温泉旅"><div class="txt"><strong>週末温泉旅</strong><span>癒しのひとときを、すぐそこに</span></div><div class="go">›</div></div>
+            <div class="feature"><img src="assets/spot_scenic.jpg" alt="絶景と体験"><div class="txt"><strong>絶景と体験</strong><span>宿から広がる旅の楽しみ</span></div><div class="go">›</div></div>
+          </div>
+        </section>
+      </section>
+    </section>
+
+    <section id="hotels" class="view">
+      <section class="content">
+        <h1 class="page-title">宿を探す</h1>
+        <p class="page-sub">宿泊先を選んで、その近くの観光地や体験施設を見つけられる構成です。</p>
+        <div class="list" id="hotelList"></div>
+      </section>
+    </section>
+
+    <section id="spots" class="view">
+      <section class="content">
+        <h1 class="page-title">周辺を探す</h1>
+        <p class="page-sub">観光地・体験施設から逆に近くの宿を探す使い方もできます。</p>
+        <div class="list" id="spotList"></div>
+      </section>
+    </section>
+
+    <section id="favorites" class="view">
+      <section class="content">
+        <h1 class="page-title">お気に入り</h1>
+        <p class="page-sub">保存した宿やスポットをあとで見返せます。</p>
+        <div id="favoriteList"></div>
+      </section>
+    </section>
+
+    <section id="profile" class="view">
+      <section class="content profile">
+        <div class="panel">
+          <h3>そらたびについて</h3>
+          <p>宿探しと、その近くで楽しめる観光・体験探しをひとつの画面で見やすくまとめた旅行アプリです。ロゴと海辺の写真が確実に表示されるよう、画像の読み込み方法を見直してあります。</p>
+        </div>
+        <div class="panel">
+          <h3>掲載の考え方</h3>
+          <p>本番では、予約可能な宿だけを掲載し、その宿から近い観光地・観光施設・体験施設のみを表示する設計を想定しています。宿と周辺の回遊を促すことで、予約導線へつなげやすくします。</p>
+        </div>
+        <div class="panel">
+          <h3>ご利用にあたって</h3>
+          <p>現在はデザイン確認用のサンプルです。<br>将来は <strong>楽天トラベルで予約可能な宿のみ</strong> を掲載予定です。予約手続きは外部ページへ移動する方式を想定しています。現時点では楽天トラベルを強調せず、注意書きとしてのみ記載しています。</p>
+          <button class="linkbtn" type="button" onclick="window.scrollTo({top:0,behavior:'smooth'})">ホームへ戻る</button>
+        </div>
+      </section>
+    </section>
+
+    <nav class="bottomnav mobile-only" id="bottomNav"></nav>
+  </main>
+</div>
+
+<script>
+const chips = ['海','温泉','絶景','体験','家族旅','カップル'];
+const hotels = [
+  {id:'h1', name:'サンセットリゾート沖縄', area:'沖縄県・恩納村', rating:'4.7', reviews:'320件', price:'¥24,800〜', people:'1泊・2名', image:'assets/hotel_tropical.jpg', tags:['海','家族旅','絶景'], description:'海が目の前に広がるリゾートホテル。南国らしい開放感と周辺アクティビティが魅力。'},
+  {id:'h2', name:'潮風の宿 海の庵', area:'静岡県・伊豆', rating:'4.6', reviews:'278件', price:'¥22,000〜', people:'1泊・2名', image:'assets/hotel_onsen.jpg', tags:['温泉','絶景','カップル'], description:'海を眺める湯浴みが楽しめる温泉宿。周辺の街歩きや景観スポットも充実。'},
+  {id:'h3', name:'ブルースカイヴィラ', area:'鹿児島県・奄美大島', rating:'4.8', reviews:'189件', price:'¥26,000〜', people:'1泊・2名', image:'assets/hotel_oceanroom.jpg', tags:['海','カップル'], description:'青い海を望むヴィラタイプの宿。落ち着いた滞在と非日常感が楽しめます。'}
+];
+const spots = [
+  {id:'s1', name:'SUP体験', type:'体験', distance:'宿から1.2km', image:'assets/hero.jpg', tags:['海','体験'], description:'透明度の高い海で気軽に楽しめる人気アクティビティ。'},
+  {id:'s2', name:'展望台', type:'絶景', distance:'宿から2.4km', image:'assets/spot_scenic.jpg', tags:['絶景'], description:'山と海を一望できるパノラマビューが魅力。'},
+  {id:'s3', name:'温泉街散策', type:'街歩き', distance:'宿から0.8km', image:'assets/spot_harbor.jpg', tags:['温泉','カップル'], description:'レトロな街並みをのんびり歩いて楽しめます。'},
+  {id:'s4', name:'水族館', type:'観光', distance:'宿から3.1km', image:'assets/spot_aquarium.jpg', tags:['家族旅'], description:'海の世界を間近に体験できる人気スポット。'},
+  {id:'s5', name:'海辺の遊歩道', type:'観光', distance:'宿から1.6km', image:'assets/hotel_tropical.jpg', tags:['海','カップル'], description:'景色を楽しみながら散歩できる定番コース。'}
+];
+const navItems = [
+  {id:'home', label:'ホーム', icon:'⌂'},
+  {id:'hotels', label:'宿', icon:'🛏'},
+  {id:'spots', label:'周辺', icon:'⌖'},
+  {id:'favorites', label:'お気に入り', icon:'♡'},
+  {id:'profile', label:'マイページ', icon:'◯'}
+];
+let currentView='home';
+let currentChip='';
+let searchWord='';
+const favorites = new Set(JSON.parse(localStorage.getItem('soratabi-favs')||'[]'));
+
+function saveFavorites(){localStorage.setItem('soratabi-favs', JSON.stringify([...favorites]));}
+function heart(active){return `<svg width="20" height="20" viewBox="0 0 24 24" fill="${active?'currentColor':'none'}" stroke="currentColor" stroke-width="2"><path d="M12 21s-6.7-4.35-9-8.28C.96 9.23 3.03 5 7.2 5c2.14 0 3.44 1.22 4.23 2.33C12.23 6.22 13.53 5 15.67 5 19.84 5 21.9 9.23 21 12.72 18.7 16.65 12 21 12 21Z"></path></svg>`;}
+function hotelCard(h){const liked=favorites.has(h.id);return `<article class="hotel-card"><div class="thumb"><img src="${h.image}" alt="${h.name}"><button class="fav ${liked?'active':''}" data-fav="${h.id}">${heart(liked)}</button></div><div class="hotel-body"><h3 class="hotel-name">${h.name}</h3><div class="meta">${h.area}</div><div class="rating"><span class="stars">★★★★★</span><span>${h.rating} (${h.reviews})</span></div><div class="price"><strong>${h.price}</strong><span>${h.people}</span></div><div class="action"><button type="button">近くの観光を見る</button></div></div></article>`;}
+function hotelListCard(h){const liked=favorites.has(h.id);return `<article class="list-card"><img src="${h.image}" alt="${h.name}"><div class="body"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div><h3 class="hotel-name">${h.name}</h3><div class="meta">${h.area}</div></div><button class="fav ${liked?'active':''}" data-fav="${h.id}">${heart(liked)}</button></div><div class="rating"><span class="stars">★★★★★</span><span>${h.rating} (${h.reviews})</span></div><p class="page-sub" style="margin:0 0 10px">${h.description}</p><div class="price"><strong>${h.price}</strong><span>${h.people}</span></div><div class="tiny-note">この宿を選ぶと、近くの観光地・体験施設だけをまとめて表示する想定です。</div></div></article>`;}
+function spotCard(s){const liked=favorites.has(s.id);return `<article class="spot-card"><img src="${s.image}" alt="${s.name}"><div class="spot-body"><h3>${s.name}</h3><p>${s.description}</p><div class="dist">${s.distance}</div><button class="fav ${liked?'active':''}" data-fav="${s.id}" style="position:static;width:34px;height:34px;margin-top:8px">${heart(liked)}</button></div></article>`;}
+function spotListCard(s){const liked=favorites.has(s.id);return `<article class="list-card"><img src="${s.image}" alt="${s.name}"><div class="body"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px"><div><h3 class="hotel-name">${s.name}</h3><div class="meta">${s.type} ・ ${s.distance}</div></div><button class="fav ${liked?'active':''}" data-fav="${s.id}">${heart(liked)}</button></div><p class="page-sub" style="margin:0">${s.description}</p><div class="tiny-note">このスポットの近くにある宿だけを逆引きで表示する使い方を想定しています。</div></div></article>`;}
+function renderChips(){document.getElementById('chips').innerHTML=chips.map(c=>`<button type="button" class="chip ${currentChip===c?'active':''}" data-chip="${c}"><span>${c}</span></button>`).join('');}
+function matches(item){const chipOk=!currentChip || (item.tags||[]).includes(currentChip);
+  const word=searchWord.trim().toLowerCase();
+  const text=(item.name+' '+(item.area||'')+' '+(item.type||'')+' '+(item.description||'')+' '+(item.tags||[]).join(' ')).toLowerCase();
+  return chipOk && (!word || text.includes(word));
+}
+function renderHome(){document.getElementById('homeHotels').innerHTML=hotels.filter(matches).map(hotelCard).join('') || '<div class="empty">条件に合う宿がありません。</div>';
+  document.getElementById('homeSpots').innerHTML=spots.filter(matches).map(spotCard).join('') || '<div class="empty">条件に合うスポットがありません。</div>';}
+function renderHotelList(){document.getElementById('hotelList').innerHTML=hotels.filter(matches).map(hotelListCard).join('') || '<div class="empty">条件に合う宿がありません。</div>';}
+function renderSpotList(){document.getElementById('spotList').innerHTML=spots.filter(matches).map(spotListCard).join('') || '<div class="empty">条件に合うスポットがありません。</div>';}
+function renderFavorites(){const favHotels=hotels.filter(h=>favorites.has(h.id)); const favSpots=spots.filter(s=>favorites.has(s.id)); const el=document.getElementById('favoriteList');
+  if(!favHotels.length && !favSpots.length){el.innerHTML='<div class="empty">まだお気に入りはありません。気になる宿やスポットのハートを押すとここに保存されます。</div>';return;}
+  el.innerHTML=`${favHotels.length?`<div class="section"><div class="section-head"><h2 style="font-size:24px">保存した宿</h2></div><div class="list">${favHotels.map(hotelListCard).join('')}</div></div>`:''}${favSpots.length?`<div class="section"><div class="section-head"><h2 style="font-size:24px">保存した周辺情報</h2></div><div class="list">${favSpots.map(spotListCard).join('')}</div></div>`:''}`;}
+function renderNav(){
+  const html=navItems.map(n=>`<button class="${currentView===n.id?'active':''}" data-view="${n.id}"><span style="font-size:26px;line-height:1">${n.icon}</span><span>${n.label}</span></button>`).join('');
+  document.getElementById('bottomNav').innerHTML=html;
+  document.getElementById('sideNav').innerHTML=navItems.map(n=>`<button class="${currentView===n.id?'active':''}" data-view="${n.id}">${n.label}</button>`).join('');
+}
+function showView(id){currentView=id;document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active', v.id===id));renderNav();if(id==='favorites')renderFavorites();window.scrollTo({top:0,behavior:'smooth'});}
+function rerender(){renderChips();renderHome();renderHotelList();renderSpotList();renderFavorites();renderNav();}
+
+document.addEventListener('click',e=>{
+  const fav=e.target.closest('[data-fav]');
+  if(fav){const id=fav.dataset.fav; favorites.has(id)?favorites.delete(id):favorites.add(id); saveFavorites(); rerender(); return;}
+  const chip=e.target.closest('[data-chip]');
+  if(chip){currentChip=currentChip===chip.dataset.chip?'':chip.dataset.chip; rerender(); return;}
+  const view=e.target.closest('[data-view]');
+  if(view){e.preventDefault();showView(view.dataset.view); return;}
+});
+document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault(); searchWord=document.getElementById('searchInput').value||''; rerender(); if(currentView==='home') showView('hotels');});
+rerender();
+</script>
 </body>
 </html>
